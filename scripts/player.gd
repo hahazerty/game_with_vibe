@@ -46,7 +46,7 @@ func _process(delta: float) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
     # Vérifier si la zone est une boule colorée
-    if area is ColoredBall:
+    if area.is_in_group("balls"):
         var ball = area as ColoredBall
         
         # Vérifier si la couleur correspond

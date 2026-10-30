@@ -6,20 +6,15 @@
 position = Vector2(960, 540)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 ){radius:30.0,type:CircleShape2D}
+shape = SubResource(1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 0)
 texture = null
 modulate = Color(1, 0, 0, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 ){radius:30.0,type:CircleShape2D}
-
 [subresource type="CircleShape2D" id=1]
-
-[subresource type="CircleShape2D" id=2]
+radius = 30.0
 
 [metadata]
 script = ExtResource( 1 )
-[connection signal="area_entered" from="CollisionShape2D" to=".." method="_on_area_entered"]

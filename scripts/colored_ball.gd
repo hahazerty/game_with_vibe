@@ -12,9 +12,7 @@ func _ready() -> void:
     add_to_group("balls")
 
 
-func _process(delta: float) -> void:
-    # Optionnel: Ajouter un léger mouvement aléatoire pour plus de dynamisme
-    # position += Vector2(randf_range(-1, 1), randf_range(-1, 1)) * 50 * delta
+func _process(_delta: float) -> void:
     pass
 
 
