@@ -6,11 +6,12 @@
 position = Vector2(960, 540)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = CircleShape2D{radius:30.0}
+shape = CircleShape2D
+
+[node name="CollisionShape2D/shape" type="CircleShape2D" parent=".."]
+radius = 30.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 0)
-texture = null
 modulate = Color(1, 0, 0, 1)
 
 [metadata]
