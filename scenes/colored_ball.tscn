@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource path="res://scripts/colored_ball.gd" type="Script" id=1]
+
+[node name="ColoredBall" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 ){radius:20.0,type:CircleShape2D}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 0)
+texture = null
+
+[subresource type="CircleShape2D" id=1]
+
+[metadata]
+script = ExtResource( 1 )
