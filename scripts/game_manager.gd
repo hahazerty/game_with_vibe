@@ -3,8 +3,6 @@ extends Node
 # Couleurs disponibles pour les boules
 enum ColorType { RED, GREEN, BLUE, YELLOW, PURPLE, CYAN }
 
-class_name GameManager
-
 # Dictionnaire associant ColorType à une couleur Godot
 const COLOR_MAP = {
     ColorType.RED: Color.RED,
