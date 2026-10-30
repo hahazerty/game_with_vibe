@@ -1,34 +1,50 @@
 extends Area2D
+class_name ColoredBall
 
-# Type de couleur de cette boule
-var color_type
+# Type de couleur de cette boule (typage fort)
+var color_type: GameManager.ColorType = GameManager.ColorType.RED
+
+# Vitesse de mouvement aléatoire (optionnel)
+const MOVE_SPEED: float = 50.0
+var move_direction: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
-    # Mettre à jour la couleur du sprite
-    update_sprite_color()
+    # Initialiser la direction de mouvement aléatoire
+    move_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
+    
+    # Mettre à jour la couleur du ColorRect
+    update_color()
     
     # Ajouter la boule au groupe "balls"
     add_to_group("balls")
 
 
-func _process(_delta: float) -> void:
-    pass
+func _process(delta: float) -> void:
+    # Mouvement léger aléatoire pour plus de dynamisme
+    position += move_direction * MOVE_SPEED * delta
+    
+    # Rebondir sur les bords de l'écran
+    var viewport_size = get_viewport().size
+    if position.x <= 0 or position.x >= viewport_size.x:
+        move_direction.x *= -1
+    if position.y <= 0 or position.y >= viewport_size.y:
+        move_direction.y *= -1
 
 
 # Définir le type de couleur de la boule
-func set_color_type(new_color_type) -> void:
+func set_color_type(new_color_type: GameManager.ColorType) -> void:
     color_type = new_color_type
-    update_sprite_color()
+    update_color()
 
 
-# Mettre à jour la couleur visuelle du sprite
-func update_sprite_color() -> void:
-    var sprite = get_node_or_null("Sprite2D")
-    if sprite:
-        sprite.modulate = GameManager.COLOR_MAP[color_type]
+# Mettre à jour la couleur visuelle
+func update_color() -> void:
+    var color_rect = get_node_or_null("ColorRect")
+    if color_rect:
+        color_rect.color = GameManager.COLOR_MAP[color_type]
 
 
 # Obtenir le type de couleur
-func get_color_type():
+func get_color_type() -> GameManager.ColorType:
     return color_type
