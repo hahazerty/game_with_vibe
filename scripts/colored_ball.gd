@@ -1,7 +1,7 @@
 extends Area2D
 
 # Type de couleur de cette boule
-var color_type: GameManager.ColorType = GameManager.ColorType.RED
+var color_type
 
 
 func _ready() -> void:
@@ -17,7 +17,7 @@ func _process(_delta: float) -> void:
 
 
 # Définir le type de couleur de la boule
-func set_color_type(new_color_type: GameManager.ColorType) -> void:
+func set_color_type(new_color_type) -> void:
     color_type = new_color_type
     update_sprite_color()
 
@@ -30,5 +30,5 @@ func update_sprite_color() -> void:
 
 
 # Obtenir le type de couleur
-func get_color_type() -> GameManager.ColorType:
+func get_color_type():
     return color_type

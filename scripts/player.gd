@@ -4,10 +4,10 @@ extends Area2D
 const SPEED = 300.0
 
 # Signal émis quand le joueur fusionne avec une boule
-signal fusion_occurred(ball_color: GameManager.ColorType)
+signal fusion_occurred(ball_color)
 
 # Signal émis quand le joueur touche une boule de couleur différente
-signal wrong_color_touched(ball_color: GameManager.ColorType)
+signal wrong_color_touched(ball_color)
 
 
 func _ready() -> void:
@@ -45,14 +45,12 @@ func _process(delta: float) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-    # Vérifier si la zone est une boule colorée
+    # Vérifier si la zone est dans le groupe "balls"
     if area.is_in_group("balls"):
-        var ball = area as ColoredBall
-        
         # Vérifier si la couleur correspond
-        if ball.color_type == GameManager.get_current_player_color():
+        if area.get_color_type() == GameManager.get_current_player_color():
             # Fusion réussie
-            fusion_occurred.emit(ball.color_type)
+            fusion_occurred.emit(area.get_color_type())
             
             # Augmenter la taille du joueur
             GameManager.increase_player_size(5)
@@ -61,11 +59,11 @@ func _on_area_entered(area: Area2D) -> void:
             GameManager.add_score(10)
             
             # Supprimer la boule
-            GameManager.remove_ball(ball)
+            GameManager.remove_ball(area)
             
         else:
             # Mauvaise couleur
-            wrong_color_touched.emit(ball.color_type)
+            wrong_color_touched.emit(area.get_color_type())
             
             # Réduire la taille du joueur
             GameManager.decrease_player_size(10)
@@ -74,7 +72,7 @@ func _on_area_entered(area: Area2D) -> void:
             GameManager.remove_score(5)
             
             # Supprimer la boule
-            GameManager.remove_ball(ball)
+            GameManager.remove_ball(area)
 
 
 func get_radius() -> float:
@@ -84,7 +82,7 @@ func get_radius() -> float:
     return 30.0
 
 
-func update_sprite_color(color_type: GameManager.ColorType) -> void:
+func update_sprite_color(color_type) -> void:
     var sprite = get_node_or_null("Sprite2D")
     if sprite:
         sprite.modulate = GameManager.COLOR_MAP[color_type]

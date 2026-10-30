@@ -1,13 +1,11 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=2 format=3]
 
 [ext_resource path="res://scripts/colored_ball.gd" type="Script" id=1]
-[subresource type="CircleShape2D" id=1]
-radius = 20.0
 
 [node name="ColoredBall" type="Area2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = CircleShape2D{radius:20.0}
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 0)

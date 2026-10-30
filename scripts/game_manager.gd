@@ -90,11 +90,13 @@ func _process(delta: float) -> void:
 
 
 func spawn_random_balls() -> void:
-    var screen_size = get_viewport_rect().size
+    var viewport = get_viewport()
+    var screen_size = viewport.size if viewport else Vector2(1920, 1080)
     
     for i in range(SPAWN_COUNT):
         # Choisir une couleur aléatoire
-        var random_color_type = ColorType(randi() % ColorType.size())
+        var color_type_keys = COLOR_MAP.keys()
+        var random_color_type = color_type_keys[randi() % color_type_keys.size()]
         
         # Position aléatoire sur les bords de l'écran
         var spawn_position = Vector2(
