@@ -7,17 +7,6 @@ position = Vector2(960, 540)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-[node name="CollisionShape2D/shape" type="CircleShape2D" parent=".."]
-radius = 30.0
+[node name="Sprite2D" type="Sprite2D" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="."]
-color = Color(1, 0, 0, 1)
-width = 60
-height = 60
-anchor_right = 0.5
-anchor_bottom = 0.5
-position = Vector2(30, 30)
-
-[metadata]
-script = ExtResource( 1 )
-[connection signal="area_entered" from="CollisionShape2D" to=".." method="_on_area_entered"]
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

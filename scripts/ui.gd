@@ -1,13 +1,13 @@
 extends CanvasLayer
 
 # Référence au label de score
-var score_label: Label
+var score_label
 
 # Référence au label Game Over
-var game_over_label: Label
+var game_over_label
 
 
-func _ready() -> void:
+func _ready():
     # Récupérer les références aux labels
     score_label = get_node_or_null("ScoreLabel")
     game_over_label = get_node_or_null("GameOverLabel")
@@ -21,11 +21,11 @@ func _ready() -> void:
         score_label.text = "Score: %d" % GameManager.score
 
 
-func _on_score_changed(new_score: int) -> void:
+func _on_score_changed(new_score):
     if score_label:
         score_label.text = "Score: %d" % new_score
 
 
-func _on_game_over() -> void:
+func _on_game_over():
     if game_over_label:
         game_over_label.visible = true
